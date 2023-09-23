@@ -1,0 +1,12 @@
+.weather {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.7rem 2rem;
+  background-color: $color-primary-dark;
+
+  & > p {
+    font-size: 1rem;
+    color: $color-grey-light;
+  }
+}
