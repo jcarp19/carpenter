@@ -1,0 +1,226 @@
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+
+  &__link-text {
+    font-size: 1.2rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 1rem 3rem;
+    color: $color-primary;
+    transition: all 0.25s ease;
+
+    @include respond(phone) {
+      font-size: 2rem;
+      padding: 3rem 5rem;
+      color: $color-grey-light;
+    }
+
+    &:hover {
+      content: "";
+      text-decoration: underline;
+      transform: scale(1.1);
+      font-weight: 700;
+    }
+  }
+
+  &__link-btn {
+    border: 1px solid $color-primary;
+    border-radius: 0.3rem;
+    // transition: all 0.33s ease;
+
+    &:hover {
+      color: $color-grey-light;
+      background-color: $color-primary;
+    }
+
+    @include respond(phone) {
+      border: none;
+    }
+  }
+
+  @include respond(phone) {
+    display: none;
+  }
+}
+
+.navigation {
+  display: none;
+
+  &__checkbox {
+    display: none;
+  }
+
+  &__button {
+    background-color: $color-grey-light;
+    height: 7rem;
+    width: 7rem;
+    border-radius: 50%;
+    position: fixed;
+    top: 0rem;
+    right: 0rem;
+    z-index: 2000;
+    // box-shadow: 0 1rem 3rem rgba($color-black, 0.1);
+    text-align: center;
+    cursor: pointer;
+
+    @include respond(tab-port) {
+      top: 4rem;
+      right: 2rem;
+    }
+    @include respond(phone) {
+      top: 3rem;
+      right: 1rem;
+    }
+  }
+
+  &__background {
+    height: 6rem;
+    width: 6rem;
+    border-radius: 50%;
+    position: fixed;
+    top: 6.5rem;
+    right: 6.5rem;
+    background-image: radial-gradient($color-primary, $color-primary-dark);
+    z-index: 1000;
+    transition: transform 0.8s cubic-bezier(0.83, 0, 0.17, 1);
+
+    @include respond(tab-port) {
+      top: 4.5rem;
+      right: 2.5rem;
+    }
+    @include respond(phone) {
+      top: 3.5rem;
+      right: 1.5rem;
+    }
+  }
+
+  &__nav {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1500;
+    opacity: 0;
+    width: 0;
+    transition: all 0.8s cubic-bezier(0.56, 0.16, 0.35, 1.31);
+  }
+
+  &__list {
+    list-style: none;
+    text-align: center;
+    width: 100%;
+    margin-top: 3rem;
+  }
+
+  &__item {
+    margin: 1rem;
+  }
+
+  &__link {
+    &:link,
+    &:visited {
+      display: inline-block;
+      font-size: 3rem;
+      font-weight: 300;
+      padding: 1rem 2rem;
+      color: $color-grey-light;
+      text-decoration: none;
+      text-transform: uppercase;
+      background-image: linear-gradient(
+        120deg,
+        transparent 0%,
+        transparent 50%,
+        $color-grey-light 50%
+      );
+      background-size: 225%;
+      transition: all 0.4s;
+
+      span {
+        margin-right: 1.5rem;
+        display: inline-block;
+      }
+    }
+
+    &:hover,
+    &:active {
+      background-position: 100%;
+      color: $color-primary;
+      transform: translateX(1rem);
+    }
+  }
+
+  // FUNCTIONALITY
+  &__checkbox:checked ~ &__background {
+    transform: scale(100);
+  }
+
+  &__checkbox:checked ~ &__nav {
+    width: 100%;
+    opacity: 1;
+  }
+
+  // ICON
+  &__icon {
+    position: relative;
+    margin-top: 3.5rem;
+
+    &,
+    &::before,
+    &::after {
+      width: 3rem;
+      height: 2px;
+      background-color: $color-primary;
+      display: inline-block;
+    }
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      transition: all 0.2s;
+    }
+
+    &::before {
+      top: -0.8rem;
+    }
+    &::after {
+      top: 0.8rem;
+    }
+  }
+
+  &__button:hover &__icon::before {
+    top: -1rem;
+  }
+
+  &__button:hover &__icon::after {
+    top: 1rem;
+  }
+
+  &__checkbox:checked + &__button &__icon {
+    background-color: transparent;
+  }
+
+  &__checkbox:checked + &__button &__icon::before {
+    transform: rotate(135deg);
+    top: 0;
+  }
+
+  &__checkbox:checked + &__button &__icon::after {
+    transform: rotate(-135deg);
+    top: 0;
+  }
+
+  @include respond(tab-land) {
+    display: none;
+  }
+  @include respond(tab-port) {
+    display: unset;
+  }
+  @include respond(phone) {
+    display: unset;
+  }
+}

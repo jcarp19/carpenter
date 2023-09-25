@@ -1,0 +1,11 @@
+.main {
+  width: 30rem;
+  position: absolute;
+  top: 10rem;
+  left: 20rem;
+
+  @include respond(phone) {
+    top: 9rem;
+    left: 5rem;
+  }
+}
